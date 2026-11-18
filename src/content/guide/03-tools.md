@@ -1,5 +1,6 @@
 ---
 title: どのAIを使えばいい？
+navTitle: どのAIを使えばいい？
 description: ChatGPT、Claude、Gemini。どれを選んでも大丈夫です。無料版で始めて、困ってから考えれば十分です。
 section: basic
 order: 3

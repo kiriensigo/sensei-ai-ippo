@@ -1,5 +1,7 @@
 ---
 title: 小テスト・ワークシートを作る
+navTitle: 小テスト・ワークシート
+label: 授業づくり
 description: AIがいちばん得意な使い方のひとつ。作って、直して、作り直すをくり返して仕上げます。
 section: scenes
 order: 21

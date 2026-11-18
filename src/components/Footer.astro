@@ -3,12 +3,15 @@ import { SITE } from '../config/site';
 ---
 <footer class="site-footer">
   <div class="container">
-    <div class="links">
+    <div>
+      <div class="f-name">{SITE.shortName}</div>
+      <div>{SITE.operatorLabel}。研修などで自由にお使いください。</div>
+      <div style="margin-top:8px">© {new Date().getFullYear()} {SITE.name}</div>
+    </div>
+    <nav aria-label="フッター">
       <a href="/guide/">ガイド</a>
       <a href="/guide/33-prompts/">プロンプト集</a>
       <a href="/about/">このサイトについて</a>
-    </div>
-    <div>{SITE.operatorLabel}。内容は自由に研修などでお使いください。</div>
-    <div>© {new Date().getFullYear()} {SITE.name}</div>
+    </nav>
   </div>
 </footer>

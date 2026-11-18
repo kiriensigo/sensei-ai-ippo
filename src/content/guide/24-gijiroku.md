@@ -1,5 +1,7 @@
 ---
 title: 会議メモ・議事録をまとめる
+navTitle: 会議メモ・議事録
+label: 校務
 description: 走り書きのメモを、決まったこと・担当・期限に整理します。共有用のメール文まで作れます。
 section: scenes
 order: 24

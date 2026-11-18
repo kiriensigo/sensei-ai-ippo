@@ -1,5 +1,6 @@
 ---
 title: 使うときの約束（これだけは守る）
+navTitle: 使うときの約束
 description: 個人情報を入れない、信じすぎない、最後は先生が確かめる。AIを使う前に知っておきたい約束です。
 section: basic
 order: 2

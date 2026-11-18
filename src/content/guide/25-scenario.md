@@ -1,5 +1,7 @@
 ---
 title: 学習発表会のシナリオを作る
+navTitle: 学習発表会のシナリオ
+label: 行事
 description: 「質問して」を使うと、条件がそろったシナリオの第1稿がすぐできます。
 section: scenes
 order: 25

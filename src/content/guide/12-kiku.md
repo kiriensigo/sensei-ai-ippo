@@ -1,5 +1,6 @@
 ---
 title: コツ2：使い方も、AIに聞く
+navTitle: 使い方も、AIに聞く
 description: 操作や頼み方がわからないときは、AI自身に聞けば教えてくれます。プロンプトの書き方を覚える必要はありません。
 section: tips
 order: 12

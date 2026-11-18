@@ -1,5 +1,6 @@
 ---
 title: 子どもにAIを使わせるときは
+navTitle: 子どもとAI
 description: 答えを出させる使い方ばかりだと、学びにつながりにくくなります。学習の補助として使う工夫を紹介します。
 section: more
 order: 32

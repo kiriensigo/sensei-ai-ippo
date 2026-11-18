@@ -1,5 +1,6 @@
 ---
 title: コツ3：AIに質問してもらう
+navTitle: AIに質問してもらう
 description: 作りたいものがはっきりしないときは、先に「必要なことを質問して」と頼みます。答えるうちに、ほしいものが見えてきます。
 section: tips
 order: 13

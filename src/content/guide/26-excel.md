@@ -1,5 +1,7 @@
 ---
 title: Excelの集計を手伝ってもらう
+navTitle: Excelの集計
+label: 校務
 description: 関数や操作の手順をAIに聞きます。データそのものではなく「やり方」を聞くのがコツです。
 section: scenes
 order: 26

@@ -1,5 +1,6 @@
 ---
 title: AIが苦手なこと・向いていないこと
+navTitle: AIが苦手なこと
 description: 何でもできるわけではありません。今のAIが苦手なことを知っておくと、ムダに悩まずにすみます。
 section: more
 order: 31

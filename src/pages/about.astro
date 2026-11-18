@@ -5,9 +5,11 @@ import { SITE } from '../config/site';
 ---
 <Base title="このサイトについて" description={`${SITE.name}の目的と、ご利用にあたってのお願いです。`}>
   <div class="narrow">
-    <nav class="breadcrumb" aria-label="パンくず"><a href="/">トップ</a> › このサイトについて</nav>
-    <section class="block prose">
-      <h1 class="page-title">このサイトについて</h1>
+    <header class="page-head">
+      <nav class="breadcrumb" aria-label="パンくず"><a href="/">トップ</a> <span aria-hidden="true">/</span> このサイトについて</nav>
+      <h1>このサイトについて</h1>
+    </header>
+    <section class="prose" style="margin-top:24px">
       <p>{SITE.operatorLabel}。「AIって難しそう」「何から始めたらいいかわからない」という先生が、無料で、今日から一歩を踏み出せることを目指しています。</p>
       <p>教員向けのAI研修で話している内容を、そのまま公開しています。研修の資料（スライド）は、このサイトの要点をまとめたものです。研修を受けた方は、あとから見返すのにお使いください。</p>
 

@@ -18,6 +18,9 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {noindex && <meta name="robots" content="noindex" />}
     <meta property="og:type" content="website" />
@@ -38,34 +41,39 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
     </main>
     <Footer />
     <script>
-      // プロンプト（コードブロック）にコピーボタンを付ける
+      // プロンプト（コードブロック）を「AIへの頼み方」の枠で包み、コピーボタンを付ける
+      const copyIcon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>';
       document.querySelectorAll('.prose pre').forEach((pre) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'prompt';
+        const head = document.createElement('div');
+        head.className = 'prompt-head';
+        const label = document.createElement('span');
+        label.className = 'prompt-label';
+        label.textContent = 'AIへの頼み方';
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'copy-btn';
-        btn.textContent = 'コピー';
+        const setLabel = (t: string) => (btn.innerHTML = copyIcon + t);
+        setLabel('コピー');
         btn.addEventListener('click', async () => {
-          const text = pre.querySelector('code')?.innerText ?? pre.innerText;
+          const text = (pre.querySelector('code') as HTMLElement | null)?.innerText ?? pre.innerText;
           try {
             await navigator.clipboard.writeText(text.trim());
-            btn.textContent = 'コピーしました';
+            setLabel('コピーしました');
           } catch {
             const r = document.createRange();
             r.selectNodeContents(pre);
-            const s = window.getSelection();
-            s?.removeAllRanges();
-            s?.addRange(r);
-            btn.textContent = '選択しました';
+            const sel = window.getSelection();
+            sel?.removeAllRanges();
+            sel?.addRange(r);
+            setLabel('選択しました');
           }
-          setTimeout(() => (btn.textContent = 'コピー'), 1800);
+          setTimeout(() => setLabel('コピー'), 1800);
         });
-        const wrap = document.createElement('div');
-        wrap.className = 'prompt';
-        const label = document.createElement('div');
-        label.className = 'prompt-label';
-        label.textContent = '💬 AIへの頼み方';
+        head.append(label, btn);
         pre.parentNode?.insertBefore(wrap, pre);
-        wrap.append(label, pre, btn);
+        wrap.append(head, pre);
       });
     </script>
   </body>

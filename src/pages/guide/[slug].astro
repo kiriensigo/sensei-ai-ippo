@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Toc from '../../components/Toc.astro';
+import Icon from '../../components/Icon.astro';
 import SafetyNotice from '../../components/SafetyNotice.astro';
 import { SECTIONS } from '../../config/site';
 import { getGuide, formatDate } from '../../lib/content';
@@ -19,10 +20,10 @@ const d = entry.data;
 const section = SECTIONS.find((s) => s.slug === d.section)!;
 ---
 <Base title={d.title} description={d.description} noindex={d.draft}>
-  <div class="container guide-layout">
+  <div class="guide-layout">
     <aside class="guide-side">
       <details class="toc-mobile">
-        <summary>📖 目次を開く</summary>
+        <summary><span>目次　<span style="color:var(--accent)">{index} / {total}</span></span><Icon name="down" size={18} color="#5b6675" /></summary>
         <Toc current={entry.id} />
       </details>
       <div class="toc-desktop"><Toc current={entry.id} /></div>
@@ -30,17 +31,15 @@ const section = SECTIONS.find((s) => s.slug === d.section)!;
 
     <div class="guide-main">
       <nav class="breadcrumb" aria-label="パンくず">
-        <a href="/">トップ</a> › <a href="/guide/">ガイド</a> › {section.name}
+        <a href="/">トップ</a> <span aria-hidden="true">/</span> <a href="/guide/">ガイド</a> <span aria-hidden="true">/</span> {section.name}
       </nav>
-      <header class="article-head">
-        <div class="step-label">{section.emoji} {section.name}　<span class="meta">{index} / {total}</span></div>
-        <h1>{d.title}</h1>
-        <p class="lead-text">{d.description}</p>
-      </header>
+      <div class="step-label">{section.name}　{index} / {total}</div>
+      <h1 class="article-title">{d.title}</h1>
+      <p class="lead-text">{d.description}</p>
 
       <section class="point-box" aria-label="このページのポイント">
-        <div class="point-title">✅ このページのポイント</div>
-        <ul>{d.summary.map((s) => <li>{s}</li>)}</ul>
+        <div class="point-title">このページのポイント</div>
+        <ul>{d.summary.map((s) => <li><Icon name="check" color="#2f7d5b" stroke={2.4} />{s}</li>)}</ul>
       </section>
 
       <article class="prose">
@@ -49,16 +48,16 @@ const section = SECTIONS.find((s) => s.slug === d.section)!;
 
       {d.section !== 'basic' && <SafetyNotice />}
 
-      <p class="meta" style="text-align:right">最終確認：{formatDate(d.checkedAt)}</p>
+      <p class="checked">最終確認：{formatDate(d.checkedAt)}</p>
 
       <nav class="pager" aria-label="前後のページ">
         {prev ? (
-          <a class="pager-link prev" href={`/guide/${prev.id}/`}><span class="meta">← まえへ</span><span>{prev.data.title}</span></a>
+          <a href={`/guide/${prev.id}/`}><span class="dir">まえへ</span><span class="ttl">{prev.data.navTitle ?? prev.data.title}</span></a>
         ) : <span />}
         {next ? (
-          <a class="pager-link next" href={`/guide/${next.id}/`}><span class="meta">つぎへ →</span><span>{next.data.title}</span></a>
+          <a class="next" href={`/guide/${next.id}/`}><span class="dir">つぎへ</span><span class="ttl">{next.data.navTitle ?? next.data.title}</span></a>
         ) : (
-          <a class="pager-link next" href="/guide/"><span class="meta">おわり</span><span>目次にもどる</span></a>
+          <a class="next" href="/guide/"><span class="dir">おわり</span><span class="ttl">目次にもどる</span></a>
         )}
       </nav>
     </div>

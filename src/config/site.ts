@@ -19,10 +19,10 @@ export const SITE = {
 
 // ガイドの章立て。order順に並びます
 export const SECTIONS = [
-  { slug: 'basic', name: 'きほん', emoji: '🌱', desc: 'まずはここから。約束とツールの選び方' },
-  { slug: 'tips', name: '5つのコツ', emoji: '💡', desc: 'うまく頼むためのコツ' },
-  { slug: 'scenes', name: '場面別にやってみる', emoji: '🏫', desc: 'そのまま試せるプロンプト付き' },
-  { slug: 'more', name: 'もっと知りたい', emoji: '📚', desc: '苦手なこと・子どもとAI・プロンプト集' },
+  { slug: 'basic', name: 'きほん', desc: 'まずはここから。約束とツールの選び方' },
+  { slug: 'tips', name: '5つのコツ', desc: 'うまく頼むためのコツ' },
+  { slug: 'scenes', name: '場面別にやってみる', desc: 'そのまま試せるプロンプト付き' },
+  { slug: 'more', name: 'もっと知りたい', desc: '苦手なこと・子どもとAI・プロンプト集' },
 ] as const;
 
 export type SectionSlug = (typeof SECTIONS)[number]['slug'];

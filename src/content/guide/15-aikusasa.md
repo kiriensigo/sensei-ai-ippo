@@ -1,5 +1,6 @@
 ---
 title: コツ5：外に出す文章は、AI臭さを消す
+navTitle: AI臭さを消す
 description: 保護者向けのお便りなど、AIが書いたとわかる文章は信頼が下がります。先生の言葉に直してから使いましょう。
 section: tips
 order: 15

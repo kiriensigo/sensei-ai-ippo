@@ -1,5 +1,6 @@
 ---
 title: プロンプト集（コピーして使える）
+navTitle: プロンプト集
 description: このガイドで紹介した頼み方を、1ページにまとめました。研修の持ち帰り資料としてもどうぞ。
 section: more
 order: 33

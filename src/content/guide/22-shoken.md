@@ -1,5 +1,7 @@
 ---
 title: 通知表の所見の下書きを作る
+navTitle: 通知表の所見
+label: 校務
 description: 箇条書きのメモから、保護者に伝わる文章のたたき台を作ります。言い回しの使い回しも防げます。
 section: scenes
 order: 22

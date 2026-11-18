@@ -6,6 +6,10 @@ const guide = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/guide' }),
   schema: z.object({
     title: z.string(),
+    // 目次などに出す短いタイトル（なければtitle）
+    navTitle: z.string().optional(),
+    // カードに出す小さなラベル（場面別のみ）
+    label: z.string().optional(),
     description: z.string(),
     section: z.enum(['basic', 'tips', 'scenes', 'more']),
     order: z.number(),

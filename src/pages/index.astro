@@ -1,57 +1,107 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE } from '../config/site';
+import Icon from '../components/Icon.astro';
 import { getGuideBySection, getGuide } from '../lib/content';
 const sections = await getGuideBySection();
 const first = (await getGuide())[0];
 const tips = sections.find((s) => s.slug === 'tips')!.pages;
 const scenes = sections.find((s) => s.slug === 'scenes')!.pages;
+const tipSub: Record<string, string> = {
+  '11-yattemiru': '一言で頼んで、出てきたものを直していく',
+  '12-kiku': '頼み方（プロンプト）もAIに書いてもらえる',
+  '13-shitsumon': 'あやふやなときは「作る前に質問して」',
+  '14-joho': 'だれに・何のために・どんな条件で・どんな形で',
+  '15-aikusasa': '先生の言葉に直して、自分で読み直す',
+};
 ---
 <Base>
   <section class="hero">
     <div class="container">
-      <span class="badge">無料のAIで、今日から</span>
-      <h1>{SITE.name}</h1>
-      <p>{SITE.tagline}。<br />AIがはじめての先生でも、まずは「ひとこと話しかける」ところから。</p>
-      <div class="btn-row">
-        {first && <a class="btn" href={`/guide/${first.id}/`}>最初から読む（約20分）</a>}
-        <a class="btn ghost" href="/guide/33-prompts/">プロンプト集を見る</a>
+      <div class="hero-text">
+        <div class="eyebrow">小学校の先生のための AI活用ガイド</div>
+        <h1>AIのきほんを、<br />20分で。</h1>
+        <p>無料で登録するだけで、今日から使えます。教員向けのAI研修で話している内容を、そのまま公開しています。</p>
+        <div class="btn-row">
+          {first && <a class="btn" href={`/guide/${first.id}/`}>最初から読む<Icon name="arrow" size={16} stroke={2.4} /></a>}
+          <a class="btn ghost" href="/guide/33-prompts/">プロンプト集を見る</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="AIへの頼み方の例">
+        <div class="hero-card-head"><span>AIへの頼み方の例</span><span class="chip">コピーして使える</span></div>
+        <div class="hero-card-body">小学3年・算数・わり算（あまりなし）の小テストを10問作ってください。<br />授業の最後の5分で使います。<br />計算が苦手な子もいるので、前半はやさしい問題にしてください。<br />答えも付けてください。</div>
+        <div class="hero-card-foot"><Icon name="check" size={18} color="#2f7d5b" stroke={2.2} />だれに・何のために・条件・形 を伝えると、結果が変わる</div>
       </div>
     </div>
   </section>
 
-  <section class="block">
+  <section class="section message">
     <div class="container">
-      <h2>まず守る3つの約束</h2>
-      <div class="grid three">
-        <div class="card"><span class="emoji">🔒</span><h3>個人情報を入れない</h3><p>名前は「生徒A」に置き換える</p></div>
-        <div class="card"><span class="emoji">🔍</span><h3>信じすぎない</h3><p>数字・名前・URLは自分で確かめる</p></div>
-        <div class="card"><span class="emoji">✍️</span><h3>最後は先生が確かめる</h3><p>評価の判断はAIに任せない</p></div>
+      <div class="message-grid">
+        <div class="message-head">
+          <div class="eyebrow">MESSAGE</div>
+          <h2>AIの時代だからこそ、<br />先生の力がいる。</h2>
+        </div>
+        <div class="message-body">
+          <p>AIは、アイデアを出したり、文章のたたき台を作ったり、面倒な作業を早く終わらせたりするのが得意です。上手に使えば、先生の仕事はぐっと楽になります。</p>
+          <p>でも、目の前の子どもたちのことを一番知っているのは、先生です。その子が今日どんな顔をしていたか、どんな言葉なら届くのか。AIには、それがわかりません。</p>
+          <p><strong>アイデアと作業はAIに。大事な判断は先生に。</strong>AIで生まれた時間を、子どもと向き合う時間に使ってほしい。そう思って、このサイトを作りました。</p>
+          <div class="role-table">
+            <div class="role">
+              <div class="role-title">AIに任せる</div>
+              <ul><li>アイデア出し</li><li>文章や教材のたたき台</li><li>業務の効率化</li></ul>
+            </div>
+            <div class="role role-teacher">
+              <div class="role-title">先生がする</div>
+              <ul><li>大事な判断</li><li>子どもを見ること</li><li>最後の確認</li></ul>
+            </div>
+          </div>
+          <p class="sign">元小学校教師より</p>
+        </div>
       </div>
-      <p style="text-align:right"><a href="/guide/02-yakusoku/">約束をくわしく見る →</a></p>
     </div>
   </section>
 
-  <section class="block">
+  <section class="section">
     <div class="container">
-      <h2>うまく使う5つのコツ</h2>
-      <ol class="tips-list">
+      <div class="eyebrow">RULES</div>
+      <h2>まず守る、3つの約束</h2>
+      <p class="lead">AIは便利ですが、信用しきらないのが基本です。</p>
+      <div class="rules">
+        <div class="rule"><div class="rule-icon"><Icon name="lock" size={22} color="#24489a" /></div><h3>個人情報を入れない</h3><p>児童の名前や成績は入れず、「生徒A」に置き換えます。</p></div>
+        <div class="rule"><div class="rule-icon"><Icon name="search" size={22} color="#24489a" /></div><h3>信じすぎない</h3><p>数字・日付・名前・URLは、自分で確かめます。</p></div>
+        <div class="rule"><div class="rule-icon"><Icon name="pen" size={22} color="#24489a" /></div><h3>最後は先生が確かめる</h3><p>評価の判断は任せず、外に出す文章は自分で読み直します。</p></div>
+      </div>
+      <a class="more-link" href="/guide/02-yakusoku/">約束をくわしく見る<Icon name="chevron" size={16} /></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">TIPS</div>
+      <h2 style="margin-bottom:40px">うまく使う、5つのコツ</h2>
+      <ol class="num-list">
         {tips.map((t, i) => (
-          <li><a href={`/guide/${t.id}/`}><span class="num">{i + 1}</span><span>{t.data.title.replace(/^コツ\d：/, '')}</span></a></li>
+          <li><a href={`/guide/${t.id}/`}>
+            <span class="no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="body"><span class="ttl">{t.data.navTitle ?? t.data.title}</span><span class="sub">{tipSub[t.id] ?? t.data.description}</span></span>
+            <Icon name="chevron" color="#9aa6b6" />
+          </a></li>
         ))}
       </ol>
     </div>
   </section>
 
-  <section class="block">
+  <section class="section">
     <div class="container">
+      <div class="eyebrow">PRACTICE</div>
       <h2>場面別にやってみる</h2>
-      <p class="lead">コピーしてそのまま使えるプロンプト付きです</p>
-      <div class="grid">
+      <p class="lead">コピーしてそのまま使えるプロンプト付きです。</p>
+      <div class="cards">
         {scenes.map((p) => (
           <a class="card" href={`/guide/${p.id}/`}>
-            <h3>{p.data.title}</h3>
-            <p>{p.data.description}</p>
+            {p.data.label && <span class="label">{p.data.label}</span>}
+            <span class="ttl">{p.data.title}</span>
+            <span class="desc">{p.data.description}</span>
           </a>
         ))}
       </div>

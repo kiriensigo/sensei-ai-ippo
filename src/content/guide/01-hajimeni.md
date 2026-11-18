@@ -1,5 +1,6 @@
 ---
 title: はじめに：AIは「話しかけるだけ」で使える
+navTitle: はじめに
 description: AIで何ができて、何から始めればいいのか。最初に知っておきたいことだけをまとめました。
 section: basic
 order: 1

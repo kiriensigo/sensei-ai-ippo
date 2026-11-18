@@ -1,5 +1,7 @@
 ---
 title: 学級通信・保護者へのお便りを作る
+navTitle: 学級通信・お便り
+label: 保護者連絡
 description: お知らせの下書きを数分で。最後に先生の言葉に直すのがポイントです。
 section: scenes
 order: 23
