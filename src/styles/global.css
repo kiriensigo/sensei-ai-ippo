@@ -208,3 +208,11 @@ svg { flex: 0 0 auto; }
 .role ul { margin: 0; padding-left: 1.2em; font-size: 16px; font-weight: 700; line-height: 1.9; }
 .sign { text-align: right; color: var(--muted); font-size: 15px; }
 @media (max-width: 640px) { .message-body { font-size: 16px; } .role-table { gap: 10px; } .role { padding: 14px 16px; } .role ul { font-size: 14px; } }
+
+/* 「先生のためのAI活用ガイド」を目立たせる */
+.brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+.brand-sub { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; }
+.hero-badge { display: inline-flex; align-items: stretch; border: 2px solid var(--accent); border-radius: 10px; overflow: hidden; margin-bottom: 24px; font-size: clamp(18px, 2.4vw, 22px); font-weight: 900; letter-spacing: 0.04em; }
+.hero-badge > span { padding: 8px 18px; }
+.hero-badge-mark { background: var(--accent); color: #fff; }
+.hero-badge > span:last-child { color: var(--accent); background: #fff; }

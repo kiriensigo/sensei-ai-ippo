@@ -4,7 +4,7 @@
 
 export const SITE = {
   // ★ 仮の名前です。決まったら変更してください
-  name: '先生のためのAIはじめの一歩',
+  name: '先生のためのAI活用ガイド｜AIはじめの一歩',
   shortName: 'AIはじめの一歩',
   tagline: '登録だけでOK。今日から使えるAIのきほんとコツ',
   description:
