@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getGuideBySection } from '../../lib/content';
+const sections = await getGuideBySection();
+let n = 0;
+---
+<Base title="ガイド（目次）" description="AIの使い方のきほん・約束・5つのコツ・場面別の例を、順番に読めるガイドです。">
+  <div class="narrow">
+    <nav class="breadcrumb" aria-label="パンくず"><a href="/">トップ</a> › ガイド</nav>
+    <section class="block">
+      <h1 class="page-title">ガイド（目次）</h1>
+      <p class="lead">上から順に読むと、20分ほどで「とりあえず使える」ところまでいけます。気になるところだけ読んでもOKです。</p>
+      {sections.map((s) => (
+        <div class="index-section">
+          <h2>{s.emoji} {s.name}</h2>
+          <p class="meta">{s.desc}</p>
+          <ol class="index-list">
+            {s.pages.map((p) => {
+              n++;
+              return (
+                <li>
+                  <a href={`/guide/${p.id}/`}>
+                    <span class="num">{n}</span>
+                    <span><strong>{p.data.title}</strong><br /><span class="meta">{p.data.description}</span></span>
+                  </a>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      ))}
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,20 @@
+---
+import { getGuideBySection } from '../lib/content';
+interface Props { current?: string }
+const { current } = Astro.props;
+const sections = await getGuideBySection();
+---
+<nav class="toc" aria-label="ガイドの目次">
+  {sections.map((s) => (
+    <div class="toc-section">
+      <div class="toc-head">{s.emoji} {s.name}</div>
+      <ol>
+        {s.pages.map((p) => (
+          <li>
+            <a href={`/guide/${p.id}/`} aria-current={p.id === current ? 'page' : undefined}>{p.data.title}</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  ))}
+</nav>

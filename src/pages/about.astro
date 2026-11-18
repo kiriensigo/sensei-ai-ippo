@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import SafetyNotice from '../components/SafetyNotice.astro';
+import { SITE } from '../config/site';
+---
+<Base title="このサイトについて" description={`${SITE.name}の目的と、ご利用にあたってのお願いです。`}>
+  <div class="narrow">
+    <nav class="breadcrumb" aria-label="パンくず"><a href="/">トップ</a> › このサイトについて</nav>
+    <section class="block prose">
+      <h1 class="page-title">このサイトについて</h1>
+      <p>{SITE.operatorLabel}。「AIって難しそう」「何から始めたらいいかわからない」という先生が、無料で、今日から一歩を踏み出せることを目指しています。</p>
+      <p>教員向けのAI研修で話している内容を、そのまま公開しています。研修の資料（スライド）は、このサイトの要点をまとめたものです。研修を受けた方は、あとから見返すのにお使いください。</p>
+
+      <h2>ご自由にお使いください</h2>
+      <p>校内研修や学年の打ち合わせなどで、このサイトを紹介したり、画面を映して使ったりするのは自由です。</p>
+
+      <h2>ご利用にあたってのお願い</h2>
+      <SafetyNotice />
+      <p>当サイトの情報は、各ページの「最終確認日」時点のものです。AIツールの機能・料金・無料で使える範囲は変わることがあります。最新の内容は、各ツールの公式サイトでご確認ください。</p>
+      <p>当サイトは、紹介するAIツールの提供会社とは関係のない、個人による運営です。アクセス解析を導入した場合は、このページでお知らせします。</p>
+    </section>
+  </div>
+</Base>

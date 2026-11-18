@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config/site';
+import { getGuideBySection, getGuide } from '../lib/content';
+const sections = await getGuideBySection();
+const first = (await getGuide())[0];
+const tips = sections.find((s) => s.slug === 'tips')!.pages;
+const scenes = sections.find((s) => s.slug === 'scenes')!.pages;
+---
+<Base>
+  <section class="hero">
+    <div class="container">
+      <span class="badge">無料のAIで、今日から</span>
+      <h1>{SITE.name}</h1>
+      <p>{SITE.tagline}。<br />AIがはじめての先生でも、まずは「ひとこと話しかける」ところから。</p>
+      <div class="btn-row">
+        {first && <a class="btn" href={`/guide/${first.id}/`}>最初から読む（約20分）</a>}
+        <a class="btn ghost" href="/guide/33-prompts/">プロンプト集を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>まず守る3つの約束</h2>
+      <div class="grid three">
+        <div class="card"><span class="emoji">🔒</span><h3>個人情報を入れない</h3><p>名前は「生徒A」に置き換える</p></div>
+        <div class="card"><span class="emoji">🔍</span><h3>信じすぎない</h3><p>数字・名前・URLは自分で確かめる</p></div>
+        <div class="card"><span class="emoji">✍️</span><h3>最後は先生が確かめる</h3><p>評価の判断はAIに任せない</p></div>
+      </div>
+      <p style="text-align:right"><a href="/guide/02-yakusoku/">約束をくわしく見る →</a></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>うまく使う5つのコツ</h2>
+      <ol class="tips-list">
+        {tips.map((t, i) => (
+          <li><a href={`/guide/${t.id}/`}><span class="num">{i + 1}</span><span>{t.data.title.replace(/^コツ\d：/, '')}</span></a></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container">
+      <h2>場面別にやってみる</h2>
+      <p class="lead">コピーしてそのまま使えるプロンプト付きです</p>
+      <div class="grid">
+        {scenes.map((p) => (
+          <a class="card" href={`/guide/${p.id}/`}>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

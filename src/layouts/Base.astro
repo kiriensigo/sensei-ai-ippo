@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../config/site';
+
+interface Props { title?: string; description?: string; noindex?: boolean }
+const { title, description = SITE.description, noindex = false } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.shortName}` : SITE.name;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+---
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta name="twitter:card" content="summary" />
+    {SITE.cfAnalyticsToken && (
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: SITE.cfAnalyticsToken })}></script>
+    )}
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ移動</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // プロンプト（コードブロック）にコピーボタンを付ける
+      document.querySelectorAll('.prose pre').forEach((pre) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'copy-btn';
+        btn.textContent = 'コピー';
+        btn.addEventListener('click', async () => {
+          const text = pre.querySelector('code')?.innerText ?? pre.innerText;
+          try {
+            await navigator.clipboard.writeText(text.trim());
+            btn.textContent = 'コピーしました';
+          } catch {
+            const r = document.createRange();
+            r.selectNodeContents(pre);
+            const s = window.getSelection();
+            s?.removeAllRanges();
+            s?.addRange(r);
+            btn.textContent = '選択しました';
+          }
+          setTimeout(() => (btn.textContent = 'コピー'), 1800);
+        });
+        const wrap = document.createElement('div');
+        wrap.className = 'prompt';
+        const label = document.createElement('div');
+        label.className = 'prompt-label';
+        label.textContent = '💬 AIへの頼み方';
+        pre.parentNode?.insertBefore(wrap, pre);
+        wrap.append(label, pre, btn);
+      });
+    </script>
+  </body>
+</html>

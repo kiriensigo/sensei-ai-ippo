@@ -1,0 +1,14 @@
+---
+import { SITE } from '../config/site';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="links">
+      <a href="/guide/">ガイド</a>
+      <a href="/guide/33-prompts/">プロンプト集</a>
+      <a href="/about/">このサイトについて</a>
+    </div>
+    <div>{SITE.operatorLabel}。内容は自由に研修などでお使いください。</div>
+    <div>© {new Date().getFullYear()} {SITE.name}</div>
+  </div>
+</footer>
